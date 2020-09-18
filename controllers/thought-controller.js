@@ -7,13 +7,13 @@ const thoughtController = {
   getThoughtById({ params }, res) {
 
   },
-  createThought({ body }, res) {
+  addThought({ body }, res) {
 
   },
   updateThought({ params, body }, res) {
 
   },
-  deleteThought({ params }, res) {
+  removeThought({ params }, res) {
 
   },
   addReaction() {
