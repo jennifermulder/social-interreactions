@@ -24,7 +24,7 @@ const UserSchema = new Schema({
   thoughts: [
     {
       type: Schema.Types.ObjectId,
-      //tells Pizza model which documents to search for to find the right comments
+      //tells User model which documents to search for to find the right comments
       ref: 'Thought'
     }
   ],
@@ -32,7 +32,7 @@ const UserSchema = new Schema({
   friends: [
     {
       type: Schema.Types.ObjectId,
-      //tells Pizza model which documents to search for to find the right comments
+      //tells User model which documents to search for to find the right comments
       ref: 'User'
     }
   ]
@@ -48,8 +48,7 @@ const UserSchema = new Schema({
 
 // get total count of comments and replies on retrieval
 UserSchema.virtual('friendCount').get(function () {
-  //.reduce( accumulator, currentValue ) method used to tally total of every comment with its replies
-  return this.friends.reduce((total, friend) => total + friend.length + 1, 0);
+  return this.friends.length;
 });
 
 

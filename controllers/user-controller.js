@@ -58,11 +58,50 @@ const userController = {
       })
       .catch(err => res.status(400).json(err));
   },
-  addToFriendList() {
-    //?????
+  addToFriendList({ params, body }, res) {
+    console.log(body);
+    User.create(body)
+      //grab id, use to add comment
+      .then(({ _id }) => {
+        return User.findOneAndUpdate(
+          { _id: params.userId },
+          //use push method to add comment id, add data to array
+          { $push: { friends: _id } },
+          { new: true }
+        );
+      })
+      .then(dbUserData => {
+        if (!dbUserData) {
+          res.status(404).json({ message: 'No user found with this id!' });
+          return;
+        }
+        res.json(dbUserData);
+      })
+      .catch(err => {
+        console.log(err)
+        res.json(err)
+      });
   },
-  removefromFriendList() {
-    //?????
+  removefromFriendList({ params }, res) {
+    User.findOneAndDelete({ _id: params.thoughtId })
+      .then(deletedFriend => {
+        if (!deletedFriend) {
+          return res.status(404).json({ message: 'No friend with this id!' });
+        }
+        return User.findOneAndUpdate(
+          { _id: params.userId },
+          { $pull: { comments: params.thoughtId } },
+          { new: true }
+        );
+      })
+      .then(dbUserData => {
+        if (!dbUserData) {
+          res.status(404).json({ message: 'No user found with this id!' });
+          return;
+        }
+        res.json(dbUserData);
+      })
+      .catch(err => res.json(err));
   },
 };
 

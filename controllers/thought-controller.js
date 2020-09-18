@@ -4,14 +4,6 @@ const thoughtController = {
   getAllThoughts(req, res) {
     //mongoose method similar to sequelize .findall()
     Thought.find({})
-      .populate({
-        //????
-        //dont care about __v field "-" means don't want. Otherwise ONLY
-        select: '-__v'
-      })
-      .select('-__v')
-      // sort by descending order by the _id value
-      .sort({ _id: -1 })
       .then(dbThoughtData => res.json(dbThoughtData))
       .catch(err => {
         console.log(err);
@@ -20,10 +12,6 @@ const thoughtController = {
   },
   getThoughtById({ params }, res) {
     Thought.findOne({ _id: params.id })
-      .populate({
-        select: '-__v'
-      })
-      .select('-__v')
       .then(dbThoughtData => res.json(dbThoughtData))
       .catch(err => {
         console.log(err);
