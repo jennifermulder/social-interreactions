@@ -61,11 +61,11 @@ const userController = {
   addToFriendList({ params, body }, res) {
     console.log(body);
     User.create(body)
-      //grab id, use to add comment
+      //grab id, use to add friend
       .then(({ _id }) => {
         return User.findOneAndUpdate(
           { _id: params.userId },
-          //use push method to add comment id, add data to array
+          //use push method to add friend id, add data to array
           { $push: { friends: _id } },
           { new: true }
         );
@@ -89,8 +89,8 @@ const userController = {
           return res.status(404).json({ message: 'No friend with this id!' });
         }
         return User.findOneAndUpdate(
-          { _id: params.userId },
-          { $pull: { comments: params.thoughtId } },
+          { friends: params.friendId },
+          { $pull: { friends: params.friendId } },
           { new: true }
         );
       })

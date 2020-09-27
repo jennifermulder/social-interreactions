@@ -3,7 +3,7 @@ const { Schema, model } = require('mongoose');
 const moment = require('moment');
 
 const UserSchema = new Schema({
-  userName: {
+  username: {
     type: String,
     unique: true,
     //required: 'You need to provide a pizza name'
@@ -24,7 +24,7 @@ const UserSchema = new Schema({
   thoughts: [
     {
       type: Schema.Types.ObjectId,
-      //tells User model which documents to search for to find the right comments
+      //tells User model which documents to search for to find the right thoughts
       ref: 'Thought'
     }
   ],
@@ -32,7 +32,7 @@ const UserSchema = new Schema({
   friends: [
     {
       type: Schema.Types.ObjectId,
-      //tells User model which documents to search for to find the right comments
+      //tells User model which documents to search for to find the right friends
       ref: 'User'
     }
   ]
@@ -46,7 +46,7 @@ const UserSchema = new Schema({
   }
 );
 
-// get total count of comments and replies on retrieval
+// get total count of friends and replies on retrieval
 UserSchema.virtual('friendCount').get(function () {
   return this.friends.length;
 });

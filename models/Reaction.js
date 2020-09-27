@@ -3,7 +3,7 @@ const moment = require('moment');
 
 const reactionSchema = new Schema(
   {
-    // set custom id to avoid confusion with parent comment _id
+    // set custom id to avoid confusion with parent thought_id
     reactionId: {
       type: Schema.Types.ObjectId,
       default: () => new Types.ObjectId()
