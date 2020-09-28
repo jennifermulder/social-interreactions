@@ -27,7 +27,7 @@ Postman
 To run program: node server
 
 ## Project Status
-The e-commerce application is compliant with defined acceptance criteria
+The social media application is compliant with defined acceptance criteria
 
 ## Contribution
 Created by Jennifer Mulder
