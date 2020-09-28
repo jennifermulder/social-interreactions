@@ -1,6 +1,6 @@
 # social-interreactions
 
-![](assets/images/social-interreactions.jpg)
+![](public/assets/images/social-interreactions.jpg)
 
 # Tutorial
 Pt1: https://drive.google.com/file/d/1lEX6_SUobKly-0uosXmvQ3xIMkcDTlsh/view
