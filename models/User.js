@@ -6,7 +6,7 @@ const UserSchema = new Schema({
   username: {
     type: String,
     unique: true,
-    //required: 'You need to provide a pizza name'
+    //required: 'You need to provide a username'
     required: true,
     trim: true
   },
@@ -52,7 +52,7 @@ UserSchema.virtual('friendCount').get(function () {
 });
 
 
-// create the User model using the PizzaSchema
+// create the User model using the UserSchema
 const User = model('User', UserSchema);
 
 // export the User model

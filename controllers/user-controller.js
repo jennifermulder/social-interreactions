@@ -58,18 +58,15 @@ const userController = {
       })
       .catch(err => res.status(400).json(err));
   },
-  addToFriendList({ params, body }, res) {
-    console.log(body);
-    User.create(body)
-      //grab id, use to add friend
-      .then(({ _id }) => {
-        return User.findOneAndUpdate(
-          { _id: params.userId },
-          //use push method to add friend id, add data to array
-          { $push: { friends: _id } },
-          { new: true }
-        );
-      })
+  addToFriendList({ params }, res) {
+    // console.log(body);
+    User.findOneAndUpdate(
+      { _id: params.userId },
+      //use push method to add friend id, add data to array
+      { $push: { friends: params.friendId } },
+      { new: true }
+    )
+
       .then(dbUserData => {
         if (!dbUserData) {
           res.status(404).json({ message: 'No user found with this id!' });
